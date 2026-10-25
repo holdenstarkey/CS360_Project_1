@@ -79,7 +79,7 @@ def train(X,y,iterations,lr):
     i=0
     while i<iterations:
         #Error occurs for this line, fitting tree to residuals
-        trees.append(build_tree(X,res))
+        trees.append(build_tree(np.asarray(X),np.asarray(res)))
         
         predictions=predict_all(X,init_pred,trees,lr)
         res=residuals(y,predictions)
