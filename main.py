@@ -84,9 +84,24 @@ def train(X,y,iterations,lr):
         predictions=predict_all(X,init_pred,trees,lr)
         res=residuals(y,predictions)
         i+=1
-    return baseline,trees
-    
-    
+    return gradient_boost_model(init_pred,trees,lr)
+
+class gradient_boost_model:
+    forest=[]
+    baseline=0
+    weight=0
+
+    def __init__(self,baseline,trees,lr):
+        self.baseline=baseline
+        self.forest=trees
+        self.weight=lr
+        pass
+    def predict_many(self,X):
+        return predict_all(X,self.baseline,self.forest,self.weight)
+    def predict_one(self,x):
+        return predict_one(x,self.baseline,self.forest,self.weight)
+
+
 
 
 
