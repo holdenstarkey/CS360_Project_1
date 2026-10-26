@@ -1,8 +1,8 @@
 import pandas as pd
 
-input_file = 'data/Training_Validation_Testing Insurance CS360 - Training.csv'
-features_file = 'data/Training_cleaned_features.csv'
-target_file = 'data/Training_cleaned_target.csv'
+input_file = 'data/Training_Validation_Testing Insurance CS360 - Validation.csv'
+features_file = 'data/Validation_cleaned_features.csv'
+target_file = 'data/Validation_cleaned_target.csv'
 
 # Load dataset
 df = pd.read_csv(input_file)
