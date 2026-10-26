@@ -77,13 +77,15 @@ def train(X,y,iterations,lr,md=2):
     init_preds=populate_list(init_pred,len(y))
     res=residuals(np.asarray(y),init_preds)
     trees=[]
+    treepreds=[]
     i=0
     while i<iterations:
         trees.append(build_tree(np.asarray(X),np.asarray(res),max_depth=md))
-        predictions=predict_all(X,init_pred,trees,lr)
+        treepreds.append(np.array(trees[-1].predict_many(X)))
+        predictions=np.asarray(init_preds)+lr*sum(treepreds)
         res=residuals(np.asarray(y),predictions)
-        print(i)
-        print(mse(res))
+        #print(i)
+        #print(mse(res))
         i+=1
     return gradient_boost_model(init_pred,trees,lr)
 
