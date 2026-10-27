@@ -23,7 +23,7 @@ def main():
     results=[]
     for tree_depth in [2,3,4]:
         results.append([])
-        for lr in [0.05,0.1,0.2,0.25,0.3,0.5,0.6,0.75,1,3,5]:
+        for lr in [0.05,0.1,0.2,0.25,0.3,0.5,0.6,0.75,1]:
             model=train(X,y,2500,lr,tree_depth)
             predictions=model.predict_many(X_val)
             res=residuals(np.asarray(y_val),np.asarray(predictions))
