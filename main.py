@@ -81,7 +81,7 @@ def train(X,y,iterations,lr,md=2):
     i=0
     while i<iterations:
         trees.append(build_tree(np.asarray(X),np.asarray(res),max_depth=md))
-        treepreds.append(np.array(trees[-1].predict_many(X)))
+        treepreds.append(np.array([predict_tree(trees[-1],x) for x in np.asarray(X)]))
         predictions=np.asarray(init_preds)+lr*sum(treepreds)
         res=residuals(np.asarray(y),predictions)
         #print(i)
