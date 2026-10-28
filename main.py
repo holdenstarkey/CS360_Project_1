@@ -28,15 +28,31 @@ def main():
     #         predictions=model.predict_many(X_val)
     #         res=residuals(np.asarray(y_val),np.asarray(predictions))
     #         results[-1].append(mse(res))
+    skresults=[]
+    '''
     for tree_depth in [2,3,4]:
         results.append([])
+        skresults.append([])
         for lr in [0.01,0.02,0.03,0.04]:
-            model=train(X,y,2500,lr,tree_depth)
-            predictions=model.predict_many(X_val)
-            res=residuals(np.asarray(y_val),np.asarray(predictions))
-            results[-1].append(mse(res))
-    out=pd.DataFrame(results)
-    out.to_csv("results_smaller.csv", index=False)
+            #model=train(X,y,2500,lr,tree_depth)
+            #predictions=model.predict_many(X_val)
+            #res=residuals(np.asarray(y_val),np.asarray(predictions))
+            #results[-1].append(mse(res))
+            reg=GradientBoostingRegressor(loss="squared_error")
+            reg.fit(X,y)
+            skval=reg.predict(X_val)
+            skres=residuals(np.asarray(y_val),np.asarray(skval))
+            skresults[-1].append(mse(skres))
+    '''
+    reg=GradientBoostingRegressor(loss="squared_error")
+    reg.fit(X,y)
+    skval=reg.predict(X_val)
+    skres=residuals(np.asarray(y_val),np.asarray(skval))
+    print(mse(skres))
+    #skout=pd.DataFrame(skresults)
+    #skout.to_csv("skresults_smaller.csv", index=False)       
+    #out=pd.DataFrame(results)
+    #out.to_csv("results_smaller.csv", index=False)
     # out.to_csv("results.csv", index=False)
 
 
@@ -92,8 +108,8 @@ def train(X,y,iterations,lr,md=2):
         treepreds.append(np.array([predict_tree(trees[-1],x) for x in np.asarray(X)]))
         predictions=np.asarray(init_preds)+lr*sum(treepreds)
         res=residuals(np.asarray(y),predictions)
-        #print(i)
-        #print(mse(res))
+        print(i)
+        print(mse(res))
         i+=1
     return gradient_boost_model(init_pred,trees,lr)
 
