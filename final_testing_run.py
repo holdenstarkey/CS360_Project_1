@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 from gradientboostmodel import gradient_boost_model
 
 
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.0025
 MAX_DEPTH = 2
 ROUNDS = 2500
 
