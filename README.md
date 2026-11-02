@@ -49,6 +49,8 @@ Run the **main()** function in our **main.py** file, which should produce:
 
 - A terminal output comparing the validation MSE of our model with optimal hyperparameters against the validation MSE of the base Scikit-learn gradient-boosting implementation and the validation MSE of the Scikit-learn gradient-boosting implementation with our optimal hyperparameters.
 
+Additionally, run the **main()** function in our **final_testing_run.py** file, which should produce various metrics and charts displaying the testing performance of our model against other models.
+
 ## Results:
 
-Based on the performance of various hyperparameter testing, we selected a tree depth of 2 and a learning rate of 0.0025 as our hyperparameters (as they resulted in the lowest validation MSE). Additionally, we chose to use 2500 iterations as our training amount, as validation MSE appears to have leveled out to a minimum at that point (see **MSE_over_training.png**). Comparing our implementation to a comparable Scikit-learn gradient boosting implementation, we receive near identical results across all metrics.
+Based on the performance of various hyperparameter testing, we selected a tree depth of 2 and a learning rate of 0.0025 as our hyperparameters (as they resulted in the lowest validation MSE). Additionally, we chose to use 2500 iterations as our training amount, as validation MSE appears to have leveled out to a minimum at that point (see **MSE_over_training.png**). Comparing our implementation to a comparable Scikit-learn gradient boosting implementation, we receive near identical results across all metrics on the final testing data.
